@@ -32,9 +32,9 @@ public class game {
     String string3 = "right";
     String string4 = "Right";
     if (string1.equals(door) || (string2.equals(door))) {
-            System.out.println("Oh no! There was an angry ghost! You're dead 💀");
+            System.out.println("Oh no! There was an angry ghost! 👻 You're dead 💀 GAME OVER!!!");
             System.exit(0);
-        } else if (string3.equals(door) || (string4.equals(door))) {
+        } else if ((string3.equals(door)) || (string4.equals(door))) {
             System.out.println("The door is unlocked, and you're able to go through... 🧐");
         } 
         else {
