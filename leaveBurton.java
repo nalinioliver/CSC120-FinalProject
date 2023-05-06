@@ -1,35 +1,49 @@
 import java.util.Scanner;
+/**
+ * Establishes parameters used for this class, including the user direction (burtonMove)
+ */
 public class leaveBurton {
-    private String choice;
+    public String burtonMove;
 
-    public leaveBurton(String choice) {
-        this.choice = choice;
+/**
+ * Assigns the variable used to decide user direction 
+ * @param burtonMove the direction the user chooses to go
+ */
+    public leaveBurton(String burtonMove) {
+        this.burtonMove = burtonMove;
     }
 
-    public static void movePerson(String moveIn) {
-        String stringA = "north";
-        String stringB = "North";
-        String stringC = "south";
-        String stringD = "South";
-        String stringE = "West";
-        String stringF = "west";
-        String stringG = "East";
-        String stringH = "east";
-        if (stringA.equals(moveIn) || (stringB.equals(moveIn))) {
+    /**
+     * Re-directs the user to a new location (that isn't Burton) based on the map that has been created in the game. If they try to go more South, or try to add an input that isn't one of the accepted options, they remain in the while loop (established with checkBurton = false), and are re-prompted to add an input. If they choose one of the accepted options, they are re-directed to the associated method in the game() class.  
+     * @param burtonMove the direction the user chooses to go 
+     */
+    public static void moveBurton(String burtonMove) {
+        boolean checkBurton = false;
+        while (checkBurton == false) {
+        if (burtonMove.equals("north") || (burtonMove.equals("North"))) {
             System.out.println("You're on your way to Ford.... be safe!! 💖👻");
-            game newGamer = new game("Nalini", "Talbot");
+            game newGamer = new game("Nalini");
             newGamer.investigateFord();
         }
-        else if (stringC.equals(moveIn) || (stringD.equals(moveIn))) {
-            System.out.println("You can't move any more South!");
-            //Need to fix 
-            System.exit(0);
-        } 
-        else if (stringE.equals(moveIn) || (stringF.equals(moveIn))) {
-            System.out.println("You are now in Hillyer");
-        }
-        else if (stringG.equals(moveIn) || (stringH.equals(moveIn))) {
+        else if (burtonMove.equals("east") || (burtonMove.equals("East"))) {
             System.out.println("You are now in Seeyle!");
+            game newGamer = new game("Nalini");
+            newGamer.exploreSeeyle();
+            
+        } 
+        else if (burtonMove.equals("west") || (burtonMove.equals("West"))) {
+            System.out.println("You are now in Tyler");
+            game newGamer = new game("Nalini");
+            newGamer.exploreTyler();
+
+        }
+        else {
+            System.out.println("Please pick one of the accepted directions 🤬");
+            Scanner Burton;
+            Burton = new Scanner(System.in);
+            burtonMove = Burton.nextLine();
+
         }
     }
+}
 }

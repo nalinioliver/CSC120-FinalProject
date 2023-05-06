@@ -1,25 +1,27 @@
 /**
  * Filename game.java
- * Description This is my submission for "Final Project Phase 1: Draft Codebase and Annotated Architecture Diagram". This includes the code that I'm currently working on for my game, including some of the options for exploring the map that I'm creating. However, this is far from done! 
+ * Description This is my submission for "Final Project: Final Deliverables". 
  * @author Nalini Oliver
- * Resources: Previous Gradescope assignments, https://www.w3schools.com/java/java_arraylist.asp and https://www.w3schools.blog/tostring-method-in-java and https://linuxhint.com/end-java-program/
+ * Resources: CSC 120 TA Hours, Previous Gradescope assignments, https://www.w3schools.com/java/java_arraylist.asp and https://www.w3schools.blog/tostring-method-in-java and https://linuxhint.com/end-java-program/
  */
 import java.util.Scanner;
 
 import java.util.ArrayList;
 
+    /**
+     * Establishes parameters used in the game, including the name of the user, an array list that stores the user's inventory (named item), and an array list that keep tracks of the locations the user has been (named track_player) 
+     */
 public class game {
     private String name;
-    private String house;
-    public String door;
+    public static ArrayList<String> item = new ArrayList<String>();
+    public static ArrayList<String> track_player = new ArrayList<String>();
+
     /**
-     * Sets parameters for what the user should initally input for the game to get started, which will be used to determine the end location of the game (still need to add code for this!)
+     * Assigns the variables used for making a new "gamer", i.e- individual that will play the game
      * @param name The name of the person playing the game 
-     * @param house The dorm of the person playing the game (should be assoicated with a dorm at Smith College)
      */
-    public game(String name, String house) {
+    public game(String name) {
         this.name = name;
-        this.house = house;
     }
 
     /**
@@ -27,73 +29,348 @@ public class game {
      * @param door the user input for either the left or right door 
      */
     public static void doorChoice(String door) {
-    String string1 = "left";
-    String string2 = "Left";
-    String string3 = "right";
-    String string4 = "Right";
-    if (string1.equals(door) || (string2.equals(door))) {
+    boolean doorCheck = false;
+    while (doorCheck == false) { 
+        if (door.equals("left") || (door.equals("Left"))) {
             System.out.println("Oh no! There was an angry ghost! 👻 You're dead 💀 GAME OVER!!!");
             System.exit(0);
-        } else if ((string3.equals(door)) || (string4.equals(door))) {
+        } else if (door.equals("right") || (door.equals("Right"))) {
             System.out.println("The door is unlocked, and you're able to go through... 🧐");
+            break;
+
         } 
         else {
-            System.out.println("Your only two choices are left or right. Please choose one of the two");
-            // Need to find a way to loop back over this
-            System.exit(0);
+            System.out.println("Your only two choices are left or right. Please choose one of the two 😢");
+            Scanner doors;
+            doors = new Scanner(System.in);
+            String doorOption;
+            door = doors.nextLine();
         }
     }
+}
 
     /**
-     * If the player chose to go to Burton lawn, this function will cause them to encounter a ghost, and have to answer a riddle in order to progress in the game. This function will request a user input, which will then be tested for accuracy. 
+     * If the player chose to go to Burton Lawn, this method will check for multiple things. This method first checks if they've been to Burton by seeing if they have any of the inventory items that are acquired in Burton. If so, it tells the user to look somewhere else, and directs them to the leaveBurton class. If not, this method will allow the user to choose 1 of 3 items for their inventory, which will re-prompt them to add an input if they choose anything other than these three options. After the item is chosen, this method causes the user to encounter a ghost, where they have to answer a riddle in order to explore other rooms through the leaveBurton class. 
      */
     public static void investigateNoise() {
-        System.out.println("You are now on Burton Lawn 🌲 You see a figure in the distance...!");
-        System.out.println("You investigate the noise.... Agh! There's a ghost 👻 It has a riddle, if you answer correctly, it will be free from the campus.... Answer wisely! 😤 The riddle is as followed (Credit for this riddle: Good Housekeeping).... I'm thinking of an odd number... Subtract a letter and it become even... What number is it?");
-        Scanner riddle;
-        riddle = new Scanner(System.in);
-        Integer userRiddle;
-        userRiddle = riddle.nextInt();
-        if (userRiddle == 7) {
-            System.out.println("Correct! The ghost is free 👻 No more hauntings on Burton Lawn!.... Now where do you want to go next, North to Ford, East to Seeyle, or West to Hillyer?");
+        if (item.contains("book") || (item.contains("hoodie")) || (item.contains("sushi"))) {
+            System.out.println("You arrive at Burton Lawn 👻... but you realize you've already been here 😱... You look around, but there's nothing else here 💪🏽! It's time to explore a new place... Do you want to go North, East, or West? 😨"); 
             leaveBurton trial1 = new leaveBurton("east");
             Scanner move;
             move = new Scanner(System.in);
-            String moveIn;
-            moveIn = move.nextLine();
-            trial1.movePerson(moveIn);
-        }
-        else {
-            System.out.println("Incorrect! The ghost 👻 got mad, and you were catapulted out of Burton Lawn! GAME OVER!!!!!");
-            System.exit(0);
-        }
+            String burtonMove;
+            burtonMove = move.nextLine();
+            trial1.moveBurton(burtonMove);
+        } else {
+        track_player.add("burton");
+        System.out.println("When you enter Burton lawn, you see three items: book 📕, hoodie 🧥 and sushi 🍣! BUT you can only pick one... this will be VERY important later on 🫣... so choose wisely!!! 🤩");
+        Scanner Item;
+        Item = new Scanner(System.in);
+        String burtonItem;
+        burtonItem = Item.nextLine();
+        boolean burton = false;
+        while (burton == false) {
+            if (burtonItem.equals("book")) {
+                item.add(burtonItem);
+                System.out.println(burtonItem + " was added to inventory");
+                System.out.println("You are now on Burton Lawn 🌲 You see a figure in the distance...!");
+                System.out.println("You investigate the noise.... Agh! There's a ghost 👻 It has a riddle, if you answer correctly, it will be free from the campus.... Answer wisely! 😤 The riddle is as followed (Credit for this riddle: Good Housekeeping).... What is more useful when it is broken?");
+                Scanner riddle;
+                riddle = new Scanner(System.in);
+                String userRiddle;
+                userRiddle = riddle.nextLine();
+                if ((userRiddle.contains("egg"))) {
+                    System.out.println("Correct! The ghost is free 👻 No more hauntings on Burton Lawn!.... Now where do you want to go next, North to Ford, East to Seeyle, or West to Tyler (just know you can't move any further South...)?");
+                    leaveBurton trial1 = new leaveBurton("east");
+                    Scanner move;
+                    move = new Scanner(System.in);
+                    String burtonMove;
+                    burtonMove = move.nextLine();
+                    trial1.moveBurton(burtonMove);
+                }
+                else {
+                    System.out.println("Incorrect! The ghost 👻 got mad, and you were catapulted out of Burton Lawn! GAME OVER!!!!!");
+                    System.exit(0);
+                }
+            } else if (burtonItem.equals("hoodie")) {
+                item.add(burtonItem);
+                System.out.println(burtonItem + " was added to inventory");
+                System.out.println("You are now on Burton Lawn 🌲 You see a figure in the distance...!");
+                System.out.println("You investigate the noise.... Agh! There's a ghost 👻 It has a riddle, if you answer correctly, it will be free from the campus.... Answer wisely! 😤 The riddle is as followed (Credit for this riddle: Good Housekeeping).... What is more useful when it is broken?");
+                Scanner riddle;
+                riddle = new Scanner(System.in);
+                String userRiddle;
+                userRiddle = riddle.nextLine();
+                if ((userRiddle.contains("egg"))) {
+                    System.out.println("Correct! The ghost is free 👻 No more hauntings on Burton Lawn!.... Now where do you want to go next, North to Ford, East to Seeyle, or West to Tyler (just know you can't move any further South...)?");
+                    leaveBurton trial1 = new leaveBurton("east");
+                    Scanner move;
+                    move = new Scanner(System.in);
+                    String burtonMove;
+                    burtonMove = move.nextLine();
+                    trial1.moveBurton(burtonMove);
+                }
+                else {
+                    System.out.println("Incorrect! The ghost 👻 got mad, and you were catapulted out of Burton Lawn! GAME OVER!!!!!");
+                    System.exit(0);
+                }
+            } else if (burtonItem.equals("sushi")) {
+                item.add(burtonItem);
+                System.out.println(burtonItem + " was added to inventory");
+                System.out.println("You are now on Burton Lawn 🌲 You see a figure in the distance...!");
+                System.out.println("You investigate the noise.... Agh! There's a ghost 👻 It has a riddle, if you answer correctly, it will be free from the campus.... Answer wisely! 😤 The riddle is as followed (Credit for this riddle: Good Housekeeping).... What is more useful when it is broken?");
+                Scanner riddle;
+                riddle = new Scanner(System.in);
+                String userRiddle;
+                userRiddle = riddle.nextLine();
+                if ((userRiddle.contains("egg"))) {
+                    System.out.println("Correct! The ghost is free 👻 No more hauntings on Burton Lawn!.... Now where do you want to go next, North to Ford, East to Seeyle, or West to Tyler (just know you can't move any further South...)?");
+                    leaveBurton trial1 = new leaveBurton("east");
+                    Scanner move;
+                    move = new Scanner(System.in);
+                    String burtonMove;
+                    burtonMove = move.nextLine();
+                    trial1.moveBurton(burtonMove);
+                }
+                else {
+                    System.out.println("Incorrect! The ghost 👻 got mad, and you were catapulted out of Burton Lawn! GAME OVER!!!!!");
+                    System.exit(0);
+                }
+            } else {
+                System.out.println("That's not an item in front of you! Please pick one of the items");
+                Scanner ItemReDo;
+                ItemReDo = new Scanner(System.in);
+                burtonItem = ItemReDo.nextLine();
+            }
     }
-
-    /**
-     * If the player chooses to go into Ford, this function will cause them to encounter a ghost, and have to answer a trivia question in order to progress in the game. This function also requests a user input, which is then tested for accuracy based on the "if" statement. 
+}
+}
+     /**
+     * If the player chose to go to Ford, this method will check for multiple things. This method first checks if they've been to Ford by seeing if they have any of the inventory items that are acquired in Ford. If so, it tells the user to look somewhere else, and directs them to the leaveFord class. If not, this method will allow the user to choose 1 of 3 items for their inventory, which will re-prompt them to add an input if they choose anything other than these three options. After the item is chosen, this method causes the user to encounter a ghost, where they have to answer a riddle in order to explore other rooms through the leaveFord class. 
      */
     public static void investigateFord() {
-        String string5 = "joseph";
-        String string6 = "Joseph";
+    if (item.contains("airpods") || (item.contains("pippett")) || (item.contains("sticker"))) {
+            System.out.println("You arrive at Ford hall 👻... but you realize you've already been here 😱... there's nothing else here to investigate 💪🏽! You decide to explore a new place... Do you want to go South, East, or West? 😨"); 
+            leaveFord trial2 = new leaveFord("east");
+            Scanner Ford;
+            Ford = new Scanner(System.in);
+            String fordMove;
+            fordMove = Ford.nextLine();
+            trial2.moveFord(fordMove);
+    } else {
+        track_player.add("ford");
         System.out.println("You are in Ford hall! In the atrium, you see airpods, a pippett and a sticker... 🫣. One of these wil help you to set a ghost free later on... 😨 Which do you pick?");
         Scanner fordItem;
         fordItem = new Scanner(System.in);
         String userItem;
         userItem = fordItem.nextLine();
-        ArrayList<String> item = new ArrayList<String>();
-        item.add(userItem);
-        System.out.println("After grabbing your item, you investigate further into Ford, and find a ghost! 👻 The only way to set them free is to prove your love for Smithies in STEM and answer the following trivia: What is the first name of the professor founded the computer science department at Smith in 1988? 👩‍💻");
-        Scanner riddleTwo;
-        riddleTwo = new Scanner(System.in);
-        String riddleTwoAnswer;
-        riddleTwoAnswer = riddleTwo.nextLine();
-        if (string5.equals(riddleTwoAnswer) || (string6.equals(riddleTwoAnswer))) {
-            System.out.println("Correct! You have set the ghost free!");
-            
-        } 
+        boolean ford = false;
+        while (ford == false) {
+        if (userItem.equals("airpods")) {
+            item.add(userItem);
+            System.out.println(userItem + " was added to inventory");
+            System.out.println("After grabbing your item, you investigate further into Ford, and find a ghost! 👻 The only way to set them free is to prove your love for Smithies in STEM and answer the following trivia: What is the FULL first name of the professor founded the computer science department at Smith in 1988? 👩‍💻");
+            Scanner riddleTwo;
+            riddleTwo = new Scanner(System.in);
+            String riddleTwoAnswer;
+            riddleTwoAnswer = riddleTwo.nextLine();
+            if (riddleTwoAnswer.equals("joseph") || (riddleTwoAnswer.equals("Joseph"))) {
+                System.out.println("Correct! You have set the ghost free! 💪🏽 You leave Ford... where do you want to go now (pick a direction: south, east, or west... just know you can't move any more North!)");
+                leaveFord trial2 = new leaveFord("east");
+                Scanner Ford;
+                Ford = new Scanner(System.in);
+                String fordMove;
+                fordMove = Ford.nextLine();
+                trial2.moveFord(fordMove);
+            } 
+            else {
+                System.out.println("Incorrect! You have made the ghost mad! 🤬 And now you're dead 💀 GAME OVER!!!!!!");
+                System.exit(0);
+            }
+        }
+        else if (userItem.equals("pippett")) {
+            item.add(userItem);
+            System.out.println(userItem + " was added to inventory");
+            System.out.println("After grabbing your item, you investigate further into Ford, and find a ghost! 👻 The only way to set them free is to prove your love for Smithies in STEM and answer the following trivia: What is the first name of the professor founded the computer science department at Smith in 1988? 👩‍💻");
+            Scanner riddleTwo;
+            riddleTwo = new Scanner(System.in);
+            String riddleTwoAnswer;
+            riddleTwoAnswer = riddleTwo.nextLine();
+            if (riddleTwoAnswer.equals("joseph") || (riddleTwoAnswer.equals("Joseph"))) {
+                System.out.println("Correct! You have set the ghost free! 💪🏽 You leave Ford... where do you want to go now (pick a direction: south, east, or west... just know you can't move any more North!)");
+                leaveFord trial2 = new leaveFord("east");
+                Scanner Ford;
+                Ford = new Scanner(System.in);
+                String fordMove;
+                fordMove = Ford.nextLine();
+                trial2.moveFord(fordMove);
+                
+            } 
+            else {
+                System.out.println("Incorrect! You have made the ghost mad! 🤬 And now you're dead 💀 GAME OVER!!!!!!");
+                System.exit(0);
+            }
+        }
+
+        else if (userItem.equals("sticker")) {
+            item.add(userItem);
+            System.out.println(userItem + " was added to inventory");
+            System.out.println("After grabbing your item, you investigate further into Ford, and find a ghost! 👻 The only way to set them free is to prove your love for Smithies in STEM and answer the following trivia: What is the first name of the professor founded the computer science department at Smith in 1988? 👩‍💻");
+            Scanner riddleTwo;
+            riddleTwo = new Scanner(System.in);
+            String riddleTwoAnswer;
+            riddleTwoAnswer = riddleTwo.nextLine();
+            if (riddleTwoAnswer.equals("Joseph") || (riddleTwoAnswer.equals("joseph"))) {
+                System.out.println("Correct! You have set the ghost free! 💪🏽 You leave Ford... where do you want to go now (pick a direction: south, east, or west... just know you can't move any more North!)");
+                leaveFord trial2 = new leaveFord("east");
+                Scanner Ford;
+                Ford = new Scanner(System.in);
+                String fordMove;
+                fordMove = Ford.nextLine();
+                trial2.moveFord(fordMove);
+                
+            } 
+            else {
+                System.out.println("Incorrect! You have made the ghost mad! 🤬 And now you're dead 💀 GAME OVER!!!!!!");
+                System.exit(0);
+            }
+        }   
+        
         else {
-            System.out.println("Incorrect! You have made the ghost mad! 🤬 And now you're dead 💀 GAME OVER!!!!!!");
-            System.exit(0);
+            System.out.println("That's not an item in front of you! Please pick one of the items");
+            Scanner items;
+            items = new Scanner(System.in);
+            userItem = items.nextLine();
         }
     }
+}
+
+}
+
+    /**
+     * If the player attempts to go to Seeyle, this method will check for multiple things. This method requires that they've already been to Burton Lawn, by seeing if they have any of the inventory items from that location. If they don't, they're told they can't enter Seeyle yet. If they do, they're asked to use one of the items in their inventory to appease the ghost. If they choose the correct item (sushi) they either progress through the game through the leaveSeeyle class (if they haven't defeeated the ghost in Tyler) or win the game (if they have). 
+     */
+    public static void exploreSeeyle() { 
+        if ((item.contains("book")) || (item.contains("hoodie")) || (item.contains("sushi"))) {
+            track_player.add("seeyle");
+            System.out.println("You've acquired some items! Perfect, because there's a ghost flying at you!! Pick an item from your inventory to appease the ghost... Remember, the following items are in your inventory:" + item);
+            Scanner appeaseGhost;
+            appeaseGhost = new Scanner(System.in);
+            String appease;
+            appease = appeaseGhost.nextLine();
+            boolean seeyle = false;
+            while (seeyle == false) { 
+            if ((item.contains(appease))) {
+                System.out.println("You chose" + appease + "! To appease the ghost!");
+                    if (appease.equals("sushi")) {
+                        System.out.println("Yum! This ghost loves sushi 🍱! The ghost is happy 😋 And is free!");
+                        if (track_player.contains("tyler") && track_player.contains("burton") && track_player.contains("seeyle") && track_player.contains("ford")) {
+                            System.out.println(" 🎆 CONGRATULATIONS!!!! 🎆 YOU HAVE FREED ALL THE GHOSTS AND SAVED SMITH! 💪🏽 The game is now finished! Thank you for playing!!");
+                            System.exit(0);
+                        }
+                            else if ((item.contains("airpods")) || (item.contains("pippett")) || (item.contains("sticker"))) {
+                                System.out.println("Even though you defeated the ghost... there's still more left... where would you like to go next? North, South, or West (you can't move any farther east)?");
+                                leaveSeeyle trial3 = new leaveSeeyle("east");
+                                Scanner seeyleNext;
+                                seeyleNext = new Scanner(System.in);
+                                String seeyleMove;
+                                seeyleMove = seeyleNext.nextLine();
+                                trial3.moveSeeyle(seeyleMove);
+
+                            } else {
+                                System.out.println("There's still more ghosts on campus... Where would you like to go next? North, South, or West (you can't move any farther east)?");
+                                leaveSeeyle trial3 = new leaveSeeyle("east");
+                                Scanner seeyleNext;
+                                seeyleNext = new Scanner(System.in);
+                                String seeyleMove;
+                                seeyleMove = seeyleNext.nextLine();
+                                trial3.moveSeeyle(seeyleMove);
+
+                            }
+                    } else {
+                        System.out.println("INCORRECT!!! 🤬 You chose the WRONG ITEM and now you have been BANISHED!! 🫣👻 GAME OVER!!");
+                        System.exit(0);
+                    }
+            } else { 
+                System.out.println("You didn't pick anything in your inventory... pick something in your inventory, which is as followed:" + item);
+                appeaseGhost = new Scanner(System.in);
+                appease = appeaseGhost.nextLine();
+            }
+        }
+
+        } else {
+            System.out.println("You try to enter Seeyle, but a ghost scares you off! 👻 If only you had a certain ITEM to appease it... 🧐 You go back to your original location, and decide to go into a different direction.... Which you should pick now");
+            leaveSeeyle trial3 = new leaveSeeyle("east");
+            Scanner seeyleNext;
+            seeyleNext = new Scanner(System.in);
+            String seeyleMove;
+            seeyleMove = seeyleNext.nextLine();
+            trial3.moveSeeyle(seeyleMove);
+        }
+            }
+   
+    /**
+     * If the player attempts to go to Tyler, this method will check for multiple things. This method requires that they've already been to Ford, by seeing if they have any of the inventory items from that location. If they don't, they're told they can't enter Ford yet. If they do, they're asked to use one of the items in their inventory to protect themselves from the ghost. If they choose the correct item (pippett) they either progress through the game through the leaveTyler class (if they haven't defeeated the ghost in Tyler) or win the game (if they have). 
+     */
+    public static void exploreTyler() {
+        if ((item.contains("airpods")) || (item.contains("pippett")) || (item.contains("sticker"))) {
+            track_player.add("tyler");
+            System.out.println("You've acquired some items! Perfect, because there's a ghost is about to attack you with a frying pan! 🍳 Pick an item from your inventory to protect yourself... Remember, the following items are in your inventory:" + item);
+            Scanner fightGhost;
+            fightGhost = new Scanner(System.in);
+            String fight;
+            fight = fightGhost.nextLine();
+            boolean tyler = false;
+            while (tyler == false) { 
+            if ((item.contains(fight))) {
+                System.out.println("You chose" + fight + "! To protect yourself from the ghost!");
+                    if (fight.equals("pippett")) {
+                        System.out.println("Wow! The ghost respects your proper handling of a pippett 👻! It's free!");
+                        if (track_player.contains("tyler") && track_player.contains("burton") && track_player.contains("seeyle") && track_player.contains("ford")) {
+                            System.out.println(" 🎆 CONGRATULATIONS!!!! 🎆 YOU HAVE FREED ALL THE GHOSTS AND SAVED SMITH! 💪🏽 The game is now finished! Thank you for playing!!");
+                            System.exit(0);
+                        } 
+                            else if ((item.contains("hoodie")) || (item.contains("sushi")) || (item.contains("book"))) {
+                                System.out.println("Even though you defeated the ghost... there's still more left... where would you like to go next? North, South, or East (you can't move any farther West)?");
+                                leaveTyler trialA = new leaveTyler("east");
+                                Scanner Tyler;
+                                Tyler = new Scanner(System.in);
+                                String tylerMove;
+                                tylerMove = Tyler.nextLine();
+                                trialA.moveTyler(tylerMove);
+            
+                            } else {
+                                System.out.println("There's still more ghosts on campus... Where would you like to go next? North, South, or East (you can't move any farther West)?");
+                                    leaveTyler trialA = new leaveTyler("east");
+                                    Scanner Tyler;
+                                    Tyler = new Scanner(System.in);
+                                    String tylerMove;
+                                    tylerMove = Tyler.nextLine();
+                                    trialA.moveTyler(tylerMove);
+                                    }
+                                    
+                        } else {
+                            System.out.println("INCORRECT!!! 🤬 You chose the WRONG ITEM and now you have been BANISHED!! 🫣👻 GAME OVER!!");
+                            System.exit(0);
+                            }
+                    } else { 
+                        System.out.println("You didn't pick anything in your inventory... pick something in your inventory, which is as followed:" + item);
+                        fightGhost = new Scanner(System.in);
+                        fight = fightGhost.nextLine();
+                    }
+                }
+            
+                } else {
+                    System.out.println("You try to enter Tyler, but a ghost smacks you with a frying pan from the dining hall 🍳! Ouch 😭! You retreat, and decide to come back when you have something to protect yourself... You now choose a different direction to go...");
+                    leaveTyler trialA = new leaveTyler("east");
+                    Scanner Tyler;
+                    Tyler = new Scanner(System.in);
+                    String tylerMove;
+                    tylerMove = Tyler.nextLine();
+                    trialA.moveTyler(tylerMove);
+                    
+
+                }
+            } 
+
 }

@@ -3,15 +3,19 @@
  */
 import java.util.Scanner;
 import java.util.ArrayList;
- /**
-     * This main function will introduce the user to the game, and ask for their name and dorm (first three lines). Following this, it will orient the player to their surroundings, run the first choice (with doorChoice), and then continue to break off into more choices with an if/else if statement leading to two different functions. 
+    /**
+     * This method will create a welcome message to introduce the user to the game, and ask for their name. They will then tell the user they need to choose between two doors, and call the doorChoice() method. If the user chooses right, they are brought back to main, and told to choose one direction: North, South, East, or West. If they choose one of these directions, they are re-directed to the associated method in the game() class. If they don't they remain in the while loop, where they are re-prompted to put in an accepted input. 
      */
 public class main {
     public static void main(String[] args) {
-        String stringa = "north";
-        String stringb = "North";
-        String stringc = "South";
-        String stringd = "south";
+        String stringnorth = "north";
+        String stringNorth = "North";
+        String stringsouth = "South";
+        String stringSouth = "south";
+        String stringeast = "east";
+        String stringEast = "East";
+        String stringwest = "west";
+        String stringWest = "West";
         Scanner name;
         name = new Scanner(System.in);
         String user;
@@ -23,24 +27,30 @@ public class main {
         door = new Scanner(System.in);
         String doorOption;
         doorOption = door.nextLine();
-        game newGamer = new game("Nalini", "Talbot");
+        game newGamer = new game("Nalini");
         newGamer.doorChoice(doorOption);
-        System.out.println("🚪 you walk through the door... and you're outside in the middle of the night 🌕 To the North you can see Ford hall 👩‍🔬. To the South you can see Burton Lawn 🌲. Do you go North or South?!");
+        System.out.println("🚪 you walk through the door... and you're outside in the middle of the night 🌕 To the North you can see Ford hall 👩‍🔬. To the South you can see Burton Lawn 🌲. To the East you can see Seeyle 📕 and to the West you can see Tyler 🏠 Do you go North, South, East, or West?");
         Scanner directionInput;
         directionInput = new Scanner(System.in);
         String userDirection;
         userDirection = directionInput.nextLine();
         boolean finished = false;
         while (finished == false) {
-        if (stringa.equals(userDirection) || stringb.equals(userDirection)) {
+        if (stringnorth.equals(userDirection) || stringNorth.equals(userDirection)) {
             newGamer.investigateFord();
             finished = true;
-        } else if (stringc.equals(userDirection) || stringd.equals(userDirection)) {
+        } else if (stringsouth.equals(userDirection) || stringSouth.equals(userDirection)) {
             newGamer.investigateNoise();
             finished = true;
+        } else if (stringeast.equals(userDirection) || stringEast.equals(userDirection)) {
+            System.out.println("You try to enter Seeyle, but a ghost scares you off! 👻 If only you had a certain ITEM to appease it... 🧐 You go back to your original location, and decide to go into a different direction.... Pick a new direction now:");
+            userDirection = directionInput.nextLine();
+        } else if (stringwest.equals(userDirection) || stringWest.equals(userDirection)) {
+            System.out.println("You try to enter Tyler, but a ghost smacks you with a frying pan from the dining hall 🍳! Ouch 😭! You retreat, and decide to come back when you have something to protect yourself... You now choose a different direction to go...");
+            userDirection = directionInput.nextLine();
         }
         else { 
-            System.out.println("Please pick north or south");
+            System.out.println("That's not an option! 🫣 Please pick north, south, east, or west! ");
             userDirection = directionInput.nextLine();
     }
     }
