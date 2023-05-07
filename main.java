@@ -2,7 +2,6 @@
  * Sources: https://www.w3schools.com/java/java_user_input.asp 
  */
 import java.util.Scanner;
-import java.util.ArrayList;
     /**
      * This method will create a welcome message to introduce the user to the game, and ask for their name. They will then tell the user they need to choose between two doors, and call the doorChoice() method. If the user chooses right, they are brought back to main, and told to choose one direction: North, South, East, or West. If they choose one of these directions, they are re-directed to the associated method in the game() class. If they don't they remain in the while loop, where they are re-prompted to put in an accepted input. 
      */

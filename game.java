@@ -31,10 +31,10 @@ public class game {
     public static void doorChoice(String door) {
     boolean doorCheck = false;
     while (doorCheck == false) { 
-        if (door.equals("left") || (door.equals("Left"))) {
+        if ((door.equals("left")) || (door.equals("Left"))) {
             System.out.println("Oh no! There was an angry ghost! 👻 You're dead 💀 GAME OVER!!!");
             System.exit(0);
-        } else if (door.equals("right") || (door.equals("Right"))) {
+        } else if ((door.equals("right")) || (door.equals("Right"))) {
             System.out.println("The door is unlocked, and you're able to go through... 🧐");
             break;
 
@@ -53,7 +53,7 @@ public class game {
      * If the player chose to go to Burton Lawn, this method will check for multiple things. This method first checks if they've been to Burton by seeing if they have any of the inventory items that are acquired in Burton. If so, it tells the user to look somewhere else, and directs them to the leaveBurton class. If not, this method will allow the user to choose 1 of 3 items for their inventory, which will re-prompt them to add an input if they choose anything other than these three options. After the item is chosen, this method causes the user to encounter a ghost, where they have to answer a riddle in order to explore other rooms through the leaveBurton class. 
      */
     public static void investigateNoise() {
-        if (item.contains("book") || (item.contains("hoodie")) || (item.contains("sushi"))) {
+        if ((item.contains("book")) || (item.contains("Book")) || (item.contains("hoodie")) || (item.contains("Hoodie"))  || (item.contains("sushi")) || (item.contains("Sushi"))) {
             System.out.println("You arrive at Burton Lawn 👻... but you realize you've already been here 😱... You look around, but there's nothing else here 💪🏽! It's time to explore a new place... Do you want to go North, East, or West? 😨"); 
             leaveBurton trial1 = new leaveBurton("east");
             Scanner move;
@@ -70,7 +70,7 @@ public class game {
         burtonItem = Item.nextLine();
         boolean burton = false;
         while (burton == false) {
-            if (burtonItem.equals("book")) {
+            if ((burtonItem.equals("book")) || (item.contains("Book"))) {
                 item.add(burtonItem);
                 System.out.println(burtonItem + " was added to inventory");
                 System.out.println("You are now on Burton Lawn 🌲 You see a figure in the distance...!");
@@ -79,7 +79,7 @@ public class game {
                 riddle = new Scanner(System.in);
                 String userRiddle;
                 userRiddle = riddle.nextLine();
-                if ((userRiddle.contains("egg"))) {
+                if ((userRiddle.contains("egg")) || (userRiddle.contains("Egg"))) {
                     System.out.println("Correct! The ghost is free 👻 No more hauntings on Burton Lawn!.... Now where do you want to go next, North to Ford, East to Seeyle, or West to Tyler (just know you can't move any further South...)?");
                     leaveBurton trial1 = new leaveBurton("east");
                     Scanner move;
@@ -92,7 +92,7 @@ public class game {
                     System.out.println("Incorrect! The ghost 👻 got mad, and you were catapulted out of Burton Lawn! GAME OVER!!!!!");
                     System.exit(0);
                 }
-            } else if (burtonItem.equals("hoodie")) {
+            } else if ((burtonItem.equals("hoodie")) || (item.contains("Hoodie"))) {
                 item.add(burtonItem);
                 System.out.println(burtonItem + " was added to inventory");
                 System.out.println("You are now on Burton Lawn 🌲 You see a figure in the distance...!");
@@ -101,7 +101,7 @@ public class game {
                 riddle = new Scanner(System.in);
                 String userRiddle;
                 userRiddle = riddle.nextLine();
-                if ((userRiddle.contains("egg"))) {
+                if ((userRiddle.contains("egg")) || (userRiddle.contains("Egg"))) {
                     System.out.println("Correct! The ghost is free 👻 No more hauntings on Burton Lawn!.... Now where do you want to go next, North to Ford, East to Seeyle, or West to Tyler (just know you can't move any further South...)?");
                     leaveBurton trial1 = new leaveBurton("east");
                     Scanner move;
@@ -114,7 +114,7 @@ public class game {
                     System.out.println("Incorrect! The ghost 👻 got mad, and you were catapulted out of Burton Lawn! GAME OVER!!!!!");
                     System.exit(0);
                 }
-            } else if (burtonItem.equals("sushi")) {
+            } else if ((burtonItem.equals("sushi")) || (item.contains("Sushi"))) {
                 item.add(burtonItem);
                 System.out.println(burtonItem + " was added to inventory");
                 System.out.println("You are now on Burton Lawn 🌲 You see a figure in the distance...!");
@@ -123,7 +123,7 @@ public class game {
                 riddle = new Scanner(System.in);
                 String userRiddle;
                 userRiddle = riddle.nextLine();
-                if ((userRiddle.contains("egg"))) {
+                if ((userRiddle.contains("egg")) || (userRiddle.contains("Egg"))) {
                     System.out.println("Correct! The ghost is free 👻 No more hauntings on Burton Lawn!.... Now where do you want to go next, North to Ford, East to Seeyle, or West to Tyler (just know you can't move any further South...)?");
                     leaveBurton trial1 = new leaveBurton("east");
                     Scanner move;
@@ -149,7 +149,7 @@ public class game {
      * If the player chose to go to Ford, this method will check for multiple things. This method first checks if they've been to Ford by seeing if they have any of the inventory items that are acquired in Ford. If so, it tells the user to look somewhere else, and directs them to the leaveFord class. If not, this method will allow the user to choose 1 of 3 items for their inventory, which will re-prompt them to add an input if they choose anything other than these three options. After the item is chosen, this method causes the user to encounter a ghost, where they have to answer a riddle in order to explore other rooms through the leaveFord class. 
      */
     public static void investigateFord() {
-    if (item.contains("airpods") || (item.contains("pippett")) || (item.contains("sticker"))) {
+        if ((item.contains("airpods")) || (item.contains("Airpods")) || (item.contains("pippett")) || (item.contains("Pippett")) || (item.contains("sticker")) || (item.contains("Sticker"))) {
             System.out.println("You arrive at Ford hall 👻... but you realize you've already been here 😱... there's nothing else here to investigate 💪🏽! You decide to explore a new place... Do you want to go South, East, or West? 😨"); 
             leaveFord trial2 = new leaveFord("east");
             Scanner Ford;
@@ -157,7 +157,7 @@ public class game {
             String fordMove;
             fordMove = Ford.nextLine();
             trial2.moveFord(fordMove);
-    } else {
+     }  else {
         track_player.add("ford");
         System.out.println("You are in Ford hall! In the atrium, you see airpods, a pippett and a sticker... 🫣. One of these wil help you to set a ghost free later on... 😨 Which do you pick?");
         Scanner fordItem;
@@ -166,7 +166,7 @@ public class game {
         userItem = fordItem.nextLine();
         boolean ford = false;
         while (ford == false) {
-        if (userItem.equals("airpods")) {
+        if ((userItem.equals("airpods")) || (item.contains("Airpods"))) {
             item.add(userItem);
             System.out.println(userItem + " was added to inventory");
             System.out.println("After grabbing your item, you investigate further into Ford, and find a ghost! 👻 The only way to set them free is to prove your love for Smithies in STEM and answer the following trivia: What is the FULL first name of the professor founded the computer science department at Smith in 1988? 👩‍💻");
@@ -188,7 +188,7 @@ public class game {
                 System.exit(0);
             }
         }
-        else if (userItem.equals("pippett")) {
+        else if ((userItem.equals("pippett")) || (item.contains("Pippett"))) {
             item.add(userItem);
             System.out.println(userItem + " was added to inventory");
             System.out.println("After grabbing your item, you investigate further into Ford, and find a ghost! 👻 The only way to set them free is to prove your love for Smithies in STEM and answer the following trivia: What is the first name of the professor founded the computer science department at Smith in 1988? 👩‍💻");
@@ -212,7 +212,7 @@ public class game {
             }
         }
 
-        else if (userItem.equals("sticker")) {
+        else if ((userItem.equals("sticker")) || (item.contains("Sticker"))) {
             item.add(userItem);
             System.out.println(userItem + " was added to inventory");
             System.out.println("After grabbing your item, you investigate further into Ford, and find a ghost! 👻 The only way to set them free is to prove your love for Smithies in STEM and answer the following trivia: What is the first name of the professor founded the computer science department at Smith in 1988? 👩‍💻");
@@ -248,10 +248,19 @@ public class game {
 }
 
     /**
-     * If the player attempts to go to Seeyle, this method will check for multiple things. This method requires that they've already been to Burton Lawn, by seeing if they have any of the inventory items from that location. If they don't, they're told they can't enter Seeyle yet. If they do, they're asked to use one of the items in their inventory to appease the ghost. If they choose the correct item (sushi) they either progress through the game through the leaveSeeyle class (if they haven't defeeated the ghost in Tyler) or win the game (if they have). 
+     * If the player attempts to go to Seeyle, this method will check for multiple things. If they've already been to Seeyle, it directs them to pick a new place. This method requires that they've already been to Burton Lawn, by seeing if they have any of the inventory items from that location. If they don't, they're told they can't enter Seeyle yet. If they do, they're asked to use one of the items in their inventory to appease the ghost. If they choose the correct item (sushi) they either progress through the game through the leaveSeeyle class (if they haven't defeeated the ghost in Tyler) or win the game (if they have). 
      */
     public static void exploreSeeyle() { 
-        if ((item.contains("book")) || (item.contains("hoodie")) || (item.contains("sushi"))) {
+        if (track_player.contains("seeyle")) {
+            System.out.println("You've arrived at Seeyle! 💪🏽 But you've already been here! Let's explore some place new. Pick a direction: North, South, or West");
+            leaveSeeyle trial3 = new leaveSeeyle("east");
+            Scanner seeyleNext;
+            seeyleNext = new Scanner(System.in);
+            String seeyleMove;
+            seeyleMove = seeyleNext.nextLine();
+            trial3.moveSeeyle(seeyleMove);
+        }
+        else if ((item.contains("book")) || (item.contains("Book")) || (item.contains("hoodie")) || (item.contains("Hoodie"))  || (item.contains("sushi")) || (item.contains("Sushi"))) {
             track_player.add("seeyle");
             System.out.println("You've acquired some items! Perfect, because there's a ghost flying at you!! Pick an item from your inventory to appease the ghost... Remember, the following items are in your inventory:" + item);
             Scanner appeaseGhost;
@@ -262,13 +271,13 @@ public class game {
             while (seeyle == false) { 
             if ((item.contains(appease))) {
                 System.out.println("You chose" + appease + "! To appease the ghost!");
-                    if (appease.equals("sushi")) {
+                    if ((appease.equals("sushi")) || (appease.equals("Sushi"))) {
                         System.out.println("Yum! This ghost loves sushi 🍱! The ghost is happy 😋 And is free!");
-                        if (track_player.contains("tyler") && track_player.contains("burton") && track_player.contains("seeyle") && track_player.contains("ford")) {
+                        if ((track_player.contains("tyler")) && (track_player.contains("burton")) && (track_player.contains("seeyle")) && (track_player.contains("ford"))) {
                             System.out.println(" 🎆 CONGRATULATIONS!!!! 🎆 YOU HAVE FREED ALL THE GHOSTS AND SAVED SMITH! 💪🏽 The game is now finished! Thank you for playing!!");
                             System.exit(0);
                         }
-                            else if ((item.contains("airpods")) || (item.contains("pippett")) || (item.contains("sticker"))) {
+                            else if (item.contains("airpods") || item.contains("Airpods") || (item.contains("pippett")) || (item.contains("Pippett")) || (item.contains("sticker")) || (item.contains("Sticker"))) {
                                 System.out.println("Even though you defeated the ghost... there's still more left... where would you like to go next? North, South, or West (you can't move any farther east)?");
                                 leaveSeeyle trial3 = new leaveSeeyle("east");
                                 Scanner seeyleNext;
@@ -310,10 +319,19 @@ public class game {
             }
    
     /**
-     * If the player attempts to go to Tyler, this method will check for multiple things. This method requires that they've already been to Ford, by seeing if they have any of the inventory items from that location. If they don't, they're told they can't enter Ford yet. If they do, they're asked to use one of the items in their inventory to protect themselves from the ghost. If they choose the correct item (pippett) they either progress through the game through the leaveTyler class (if they haven't defeeated the ghost in Tyler) or win the game (if they have). 
+     * If the player attempts to go to Tyler, this method will check for multiple things. If the player has already been to Tyler, it will direct them to a new place. This method requires that they've already been to Ford, by seeing if they have any of the inventory items from that location. If they don't, they're told they can't enter Ford yet. If they do, they're asked to use one of the items in their inventory to protect themselves from the ghost. If they choose the correct item (pippett) they either progress through the game through the leaveTyler class (if they haven't defeeated the ghost in Tyler) or win the game (if they have). 
      */
     public static void exploreTyler() {
-        if ((item.contains("airpods")) || (item.contains("pippett")) || (item.contains("sticker"))) {
+        if (track_player.contains("tyler")) {
+            System.out.println("You've arrived at Tyler! 💪🏽 But you've already been here! Let's explore some place new. Pick a direction: North, South, or East.");
+            leaveTyler trialA = new leaveTyler("east");
+            Scanner Tyler;
+            Tyler = new Scanner(System.in);
+            String tylerMove;
+            tylerMove = Tyler.nextLine();
+            trialA.moveTyler(tylerMove);
+        }
+        else if ((item.contains("airpods")) || (item.contains("Airpods")) || (item.contains("pippett")) || (item.contains("Pippett")) || (item.contains("sticker")) || (item.contains("Sticker"))) {
             track_player.add("tyler");
             System.out.println("You've acquired some items! Perfect, because there's a ghost is about to attack you with a frying pan! 🍳 Pick an item from your inventory to protect yourself... Remember, the following items are in your inventory:" + item);
             Scanner fightGhost;
@@ -324,9 +342,9 @@ public class game {
             while (tyler == false) { 
             if ((item.contains(fight))) {
                 System.out.println("You chose" + fight + "! To protect yourself from the ghost!");
-                    if (fight.equals("pippett")) {
+                    if ((fight.equals("pippett")) || (fight.equals("Pippett"))) {
                         System.out.println("Wow! The ghost respects your proper handling of a pippett 👻! It's free!");
-                        if (track_player.contains("tyler") && track_player.contains("burton") && track_player.contains("seeyle") && track_player.contains("ford")) {
+                        if ((track_player.contains("tyler")) && (track_player.contains("burton")) && (track_player.contains("seeyle")) && (track_player.contains("ford"))) {
                             System.out.println(" 🎆 CONGRATULATIONS!!!! 🎆 YOU HAVE FREED ALL THE GHOSTS AND SAVED SMITH! 💪🏽 The game is now finished! Thank you for playing!!");
                             System.exit(0);
                         } 
