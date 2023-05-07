@@ -1,5 +1,8 @@
 /**
- * Sources: https://www.w3schools.com/java/java_user_input.asp 
+ * Filename main.java
+ * Main method, introduces user to the game, directs them to the first two decions made in the game class. 
+ * @author Nalini Oliver
+ * Resources: CSC 120 TA Hours, Previous Gradescope assignments, https://www.w3schools.com/java/java_arraylist.asp and https://www.w3schools.blog/tostring-method-in-java and https://linuxhint.com/end-java-program/ and https://www.w3schools.com/java/java_user_input.asp  
  */
 import java.util.Scanner;
     /**

@@ -1,8 +1,8 @@
 /**
  * Filename game.java
- * Description This is my submission for "Final Project: Final Deliverables". 
+ * Main game class, containing methods to explore the four locations: Seeyle, Ford, Burton, and Tyler 
  * @author Nalini Oliver
- * Resources: CSC 120 TA Hours, Previous Gradescope assignments, https://www.w3schools.com/java/java_arraylist.asp and https://www.w3schools.blog/tostring-method-in-java and https://linuxhint.com/end-java-program/
+ * Resources: CSC 120 TA Hours, Previous Gradescope assignments, https://www.w3schools.com/java/java_arraylist.asp and https://www.w3schools.blog/tostring-method-in-java and https://linuxhint.com/end-java-program/ and and https://www.w3schools.com/java/java_user_input.asp  
  */
 import java.util.Scanner;
 
