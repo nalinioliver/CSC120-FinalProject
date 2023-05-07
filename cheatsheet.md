@@ -16,7 +16,7 @@ Answer must contain the word "egg" (can be capitalized)
 
 5. Total possible list of inventory items (will only have 2 inventory items depending on what you choose) 
 - Options in Ford (inventory items must be spelled properly to be used in associated class, but can be capitalized or uncapitalized): 
-book, hoodie, sushi. 
+book, hoodie, sushi
 
 - Options in Burton (inventory items must be spelled properly to be used in associated class, but can be capitalized or uncapitalized): airpods, pippett, sticker 
 
@@ -37,8 +37,8 @@ In order to enter Seeyle and Tyler, you first have to enter Burton and Ford (res
 # Challenge 5: 
 If you want to complete the entire game, you'll need to defeat the ghosts in both Seeyle and Tyler.
 In order to either appease or protect yourself from the ghosts in Seeyle and Tyler, you need to pick speciifc items from the inventory that you're offered. 
-In Burton, you'll be offered three things: a hoodie, sushi, and a book. In order to defeat the ghost in Seeyle, you need to choose sushi in Burton and use sushi in Seeyle. 
-In Ford, you'll be offered three things: airpods, a pippett, and a sticker. In order to defeat the ghost in Tyler, you need to choose pippett in Ford and use pippett in Tyler. 
+In Burton, you'll be offered three things to choose from: a hoodie, sushi, and a book. In order to defeat the ghost in Seeyle, you need to choose sushi in Burton and use sushi in Seeyle. 
+In Ford, you'll be offered three things to choose from: airpods, a pippett, and a sticker. In order to defeat the ghost in Tyler, you need to choose pippett in Ford and use pippett in Tyler. 
 
 # Overview of correct decisions/ answer to make (easiest path in the game): 
 1. Choose the right door
